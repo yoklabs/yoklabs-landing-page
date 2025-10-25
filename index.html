@@ -321,38 +321,38 @@
     </footer>
 
     <script>
-        // Array of your tools - Add your actual subdomains here
         const tools = [
             {
                 name: 'Base64 Encoder/Decoder',
                 description: 'Encode and decode Base64 strings instantly. Supports text, files, and images.',
                 icon: '🔐',
                 url: 'https://base64encodedecode.yoklabs.com/'
+            },
+            {
+                name: 'Hash Generator',
+                description: 'Generate multiple hash formats instantly including MD5, SHA1, and SHA256.',
+                icon: '⚙️',
+                url: 'https://hashgenerator.yoklabs.com/'
             }
         ];
 
-        // Render tools on page load
         function renderTools() {
             const toolsGrid = document.getElementById('toolsGrid');
-            
             tools.forEach(tool => {
                 const toolCard = document.createElement('a');
                 toolCard.className = 'tool-card';
                 toolCard.href = tool.url;
                 toolCard.target = '_blank';
                 toolCard.rel = 'noopener noreferrer';
-                
                 toolCard.innerHTML = `
                     <div class="tool-icon">${tool.icon}</div>
                     <h3>${tool.name}</h3>
                     <p>${tool.description}</p>
                     <span class="tool-url">${tool.url.replace('https://', '')}</span>
                 `;
-                
                 toolsGrid.appendChild(toolCard);
             });
 
-            // Add "Add More" placeholder card
             const addCard = document.createElement('div');
             addCard.className = 'tool-card add-tool-card';
             addCard.innerHTML = `
@@ -362,7 +362,6 @@
             toolsGrid.appendChild(addCard);
         }
 
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', renderTools);
     </script>
 </body>
