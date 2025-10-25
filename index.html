@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YokLabs - Free Developer Tools for Productivity</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+                --color-gray-300-rgb: 167, 169, 169;
+                --color-gray-200-rgb: 245, 245, 245;
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-24);
+        }
+
+        header {
+            padding: var(--space-32) 0;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-24);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-teal-500), var(--color-teal-700));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--color-white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-text);
+            letter-spacing: -0.02em;
+        }
+
+        .brand-tagline {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-top: 2px;
+        }
+
+        .hero {
+            padding: var(--space-48) 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: var(--space-16);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto var(--space-32);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-24);
+            padding: var(--space-32) 0;
+        }
+
+        .tool-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: var(--space-16);
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-8);
+        }
+
+        .tool-card p {
+            color: var(--color-text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: var(--space-16);
+        }
+
+        .tool-url {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            color: var(--color-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tool-url::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover .tool-url::after {
+            transform: translateX(4px);
+        }
+
+        .add-tool-card {
+            border: 2px dashed var(--color-border);
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
+        }
+
+        .add-tool-card:hover {
+            border-color: var(--color-primary);
+            background-color: var(--color-secondary);
+        }
+
+        .add-icon {
+            font-size: 48px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-16);
+        }
+
+        .add-text {
+            color: var(--color-text-secondary);
+            font-size: 16px;
+        }
+
+        footer {
+            margin-top: var(--space-48);
+            padding: var(--space-32) 0;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">Y</div>
+                    <div class="brand">
+                        <div class="brand-name">YokLabs</div>
+                        <div class="brand-tagline">Developer Tools Suite</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Free Developer Tools for Productivity</h1>
+                <p>Powerful, open-source tools designed to streamline your development workflow. Built by developers, for developers.</p>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <div class="tools-grid" id="toolsGrid">
+                    <!-- Tools will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 YokLabs. All tools are free and open for developers worldwide.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Array of your tools - Add your actual subdomains here
+        const tools = [
+            {
+                name: 'Base64 Encoder/Decoder',
+                description: 'Encode and decode Base64 strings instantly. Supports text, files, and images.',
+                icon: '🔐',
+                url: 'https://base64encodedecode.yoklabs.com/'
+            }
+        ];
+
+        // Render tools on page load
+        function renderTools() {
+            const toolsGrid = document.getElementById('toolsGrid');
+            
+            tools.forEach(tool => {
+                const toolCard = document.createElement('a');
+                toolCard.className = 'tool-card';
+                toolCard.href = tool.url;
+                toolCard.target = '_blank';
+                toolCard.rel = 'noopener noreferrer';
+                
+                toolCard.innerHTML = `
+                    <div class="tool-icon">${tool.icon}</div>
+                    <h3>${tool.name}</h3>
+                    <p>${tool.description}</p>
+                    <span class="tool-url">${tool.url.replace('https://', '')}</span>
+                `;
+                
+                toolsGrid.appendChild(toolCard);
+            });
+
+            // Add "Add More" placeholder card
+            const addCard = document.createElement('div');
+            addCard.className = 'tool-card add-tool-card';
+            addCard.innerHTML = `
+                <div class="add-icon">+</div>
+                <div class="add-text">More tools coming soon</div>
+            `;
+            toolsGrid.appendChild(addCard);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', renderTools);
+    </script>
+</body>
+</html>
